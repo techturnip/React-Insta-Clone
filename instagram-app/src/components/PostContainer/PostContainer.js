@@ -12,7 +12,7 @@ export default class PostContainer extends Component {
   }
 
   render() {
-    console.log(this.state.likes);
+    console.log(this.props);
 
     const {
       username,
@@ -23,7 +23,7 @@ export default class PostContainer extends Component {
     } = this.props.postData;
 
     return (
-      <div className="post-container">
+      <div className="post">
         <header className="post-header">
           <img src={thumbnailUrl} alt={`User ${username} thumbnail`} />
           <h2>{username}</h2>
@@ -41,4 +41,18 @@ export default class PostContainer extends Component {
   }
 }
 
-CommentSection.propTypes = {};
+PostContainer.propTypes = {
+  postData: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    thumbnailUrl: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        username: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+      })
+    )
+  })
+};
