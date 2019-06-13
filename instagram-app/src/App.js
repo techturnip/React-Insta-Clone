@@ -19,7 +19,9 @@ export default class App extends Component {
           <SearchBar />
         </header>
         <section>
-          <PostContainer />
+          {this.state.postData.map(post => (
+            <PostContainer postData={post} key={post.id} />
+          ))}
         </section>
       </div>
     );

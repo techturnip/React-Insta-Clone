@@ -1,7 +1,19 @@
 import React, { Component } from "react";
+import Comment from "./Comment";
+import "./CommentSection.css";
 
 export default class CommentSection extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    return <div>This is the CommentSection</div>;
+    const { commentData } = this.props;
+    return (
+      <div className="comments">
+        {commentData.map(comment => (
+          <Comment commentData={comment} key={comment.id} />
+        ))}
+      </div>
+    );
   }
 }
