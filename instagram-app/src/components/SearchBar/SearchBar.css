@@ -1,0 +1,15 @@
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+}
+
+.navbar-brand>.logo-icon {
+  margin-right: .5rem;
+  padding-right: 1rem;
+  border-right: solid 1px black;
+}
+
+.navbar-brand>.brand {
+  margin: 0;
+}

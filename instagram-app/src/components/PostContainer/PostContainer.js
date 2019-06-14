@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CommentSection from "../CommentSection/CommentSection";
+import CommentBtn from "./CommentBtn";
+import LikeBtn from "./LikeBtn";
 import "./PostContainer.css";
 
 export default class PostContainer extends Component {
@@ -23,17 +25,27 @@ export default class PostContainer extends Component {
     } = this.props.postData;
 
     return (
-      <div className="post">
+      <div className="post card mx-auto my-4">
         <header className="post-header">
-          <img src={thumbnailUrl} alt={`User ${username} thumbnail`} />
-          <h2>{username}</h2>
+          <img
+            className="user-thumbnail"
+            src={thumbnailUrl}
+            alt={`User ${username} thumbnail`}
+          />
+          <h2 className="post-username">{username}</h2>
         </header>
         <div className="post-image">
-          <img src={imageUrl} alt="" />
+          <img className="img-fluid" src={imageUrl} alt="" />
         </div>
-        <footer>
-          <div>HEART COMMENT</div>
-          <div className="post-likes">{likes} likes</div>
+        <footer className="post-footer">
+          <div className="post-interact">
+            <div className="post-interact-btns">
+              <LikeBtn />
+              <CommentBtn />
+            </div>
+            <div className="post-likes">{likes} likes</div>
+          </div>
+
           <CommentSection commentData={comments} />
         </footer>
       </div>

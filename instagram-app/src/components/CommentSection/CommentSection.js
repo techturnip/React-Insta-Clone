@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Comment from "./Comment";
+import CommentInput from "./CommentInput";
 import "./CommentSection.css";
 
 export default class CommentSection extends Component {
@@ -13,6 +14,7 @@ export default class CommentSection extends Component {
         {commentData.map(comment => (
           <Comment commentData={comment} key={comment.id} />
         ))}
+        <CommentInput />
       </div>
     );
   }
