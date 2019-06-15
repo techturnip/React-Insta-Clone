@@ -18,6 +18,8 @@ export default class CommentInput extends Component {
     e.preventDefault();
 
     this.props.addComment(e, Date.now(), this.state.inputText);
+
+    this.setState({ inputText: "" });
   };
 
   render() {

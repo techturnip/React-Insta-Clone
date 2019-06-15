@@ -66,3 +66,7 @@ PostContainer.propTypes = {
     )
   })
 };
+
+PostContainer.defaultProps = {
+  postData: []
+};
