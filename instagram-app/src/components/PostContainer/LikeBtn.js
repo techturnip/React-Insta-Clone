@@ -2,10 +2,21 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-export default function LikeBtn() {
+function LikeBtn(props) {
+  const clickHandler = e => {
+    props.likeToggle(e);
+  };
+
   return (
     <>
-      <FontAwesomeIcon className="like-btn" size="2x" icon={faHeart} />
+      <FontAwesomeIcon
+        onClick={clickHandler}
+        className="like-btn"
+        size="2x"
+        icon={faHeart}
+      />
     </>
   );
 }
+
+export default LikeBtn;

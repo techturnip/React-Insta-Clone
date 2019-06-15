@@ -9,6 +9,22 @@ import {
 import "./SearchBar.css";
 
 export default class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: ""
+    };
+  }
+
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.search(this.state.username);
+  };
+
+  changeHandler = e => {
+    this.setState({ username: e.target.value });
+  };
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,12 +35,20 @@ export default class SearchBar extends Component {
             </span>{" "}
             <span className="brand">Insta-Clone</span>
           </a>
-          <form class="form-inline my-2 my-lg-0 mx-auto">
+          <form
+            onSubmit={this.submitHandler}
+            className="form-inline my-2 my-lg-0 mx-auto"
+          >
             <input
+              value={this.state.username}
               className="form-control mr-sm-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search..."
+              onChange={this.changeHandler}
             />
+            <button className="btn btn-primary" type="submit">
+              Search
+            </button>
           </form>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">

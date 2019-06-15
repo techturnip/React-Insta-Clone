@@ -8,15 +8,31 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      postData: dummyData
+      postData: []
     };
+  }
+
+  search = username => {
+    const newPostData = this.state.postData.filter(posts => {
+      return posts.username === username;
+    });
+
+    if (username !== "") {
+      this.setState({ postData: newPostData });
+    } else {
+      this.setState({ postData: dummyData });
+    }
+  };
+
+  componentDidMount() {
+    this.setState({ postData: dummyData });
   }
 
   render() {
     return (
       <div className="App">
         <header>
-          <SearchBar />
+          <SearchBar search={this.search} />
         </header>
         <section className="container">
           {this.state.postData.map(post => (

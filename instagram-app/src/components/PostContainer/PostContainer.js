@@ -1,53 +1,51 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CommentSection from "../CommentSection/CommentSection";
-import CommentBtn from "./CommentBtn";
-import LikeBtn from "./LikeBtn";
+import Post from "./Post";
+
 import "./PostContainer.css";
 
 export default class PostContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      likes: this.props.postData.likes
+      comments: this.props.postData.comments,
+      likes: this.props.postData.likes,
+      likePost: false
     };
   }
 
+  likeToggle = e => {
+    if (this.state.likePost === false) {
+      e.target.style.color = "red";
+      const newLikeCount = this.state.likes + 1;
+      this.setState({ likes: newLikeCount, likePost: true });
+    } else {
+      e.target.style.color = "";
+      const newLikeCount = this.state.likes - 1;
+      this.setState({ likes: newLikeCount, likePost: false });
+    }
+  };
+
+  addNewComment = (e, id, text) => {
+    const newComment = {
+      id: id,
+      username: "anonymous",
+      text: text
+    };
+
+    this.setState({ comments: [...this.state.comments, newComment] });
+  };
+
   render() {
-    console.log(this.props);
-
-    const {
-      username,
-      thumbnailUrl,
-      imageUrl,
-      comments,
-      likes
-    } = this.props.postData;
-
     return (
       <div className="post card mx-auto my-4">
-        <header className="post-header">
-          <img
-            className="user-thumbnail"
-            src={thumbnailUrl}
-            alt={`User ${username} thumbnail`}
-          />
-          <h2 className="post-username">{username}</h2>
-        </header>
-        <div className="post-image">
-          <img className="img-fluid" src={imageUrl} alt="" />
-        </div>
-        <footer className="post-footer">
-          <div className="post-interact">
-            <div className="post-interact-btns">
-              <LikeBtn />
-              <CommentBtn />
-            </div>
-            <div className="post-likes">{likes} likes</div>
-          </div>
-
-          <CommentSection commentData={comments} />
-        </footer>
+        <Post
+          postData={this.props.postData}
+          likes={this.state.likes}
+          commentData={this.state.comments}
+          addComment={this.addNewComment}
+          likeToggle={this.likeToggle}
+        />
       </div>
     );
   }
