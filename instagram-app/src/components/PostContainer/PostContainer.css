@@ -1,0 +1,45 @@
+.post {
+  max-width: 640px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.post-username {
+  font-size: 1.4rem;
+}
+
+.user-thumbnail {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin-right: 1rem;
+}
+
+.post-likes {
+  font-weight: bold;
+}
+
+.post-interact {
+  margin-bottom: 1rem;
+}
+
+.like-btn,
+.comment-btn {
+  cursor: pointer;
+}
+
+.post-interact svg {
+  margin-right: 1rem;
+}
+
+.post-interact-btns {
+  margin-bottom: .5rem;
+}
+
+.post-footer {
+  padding: 1rem 1.5rem;
+}
