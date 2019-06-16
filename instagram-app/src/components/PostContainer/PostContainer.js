@@ -7,11 +7,22 @@ import "./PostContainer.css";
 export default class PostContainer extends Component {
   constructor(props) {
     super(props);
+    this.localStorage = JSON.parse(
+      localStorage.getItem(this.props.postData.id)
+    );
+
+    console.log(this.localStorage);
     this.state = {
       comments: this.props.postData.comments,
       likes: this.props.postData.likes,
       likePost: false
     };
+  }
+
+  componentDidMount() {
+    if (this.localStorage !== null) {
+      this.setState({ comments: this.localStorage });
+    }
   }
 
   likeToggle = e => {
@@ -33,10 +44,20 @@ export default class PostContainer extends Component {
       text: text
     };
 
-    this.setState({ comments: [...this.state.comments, newComment] });
+    const newArrComments = [...this.state.comments, newComment];
+
+    console.log(newArrComments);
+
+    this.setState({ comments: newArrComments });
+
+    localStorage.setItem(
+      this.props.postData.id,
+      JSON.stringify(newArrComments)
+    );
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="post card mx-auto my-4">
         <Post
